@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react"
+import TodoCard from "./components/TodoCard"
+import TodoForm from "./components/TodoForm"
+
+import { todoReducer, init } from "./reducers/todoReducer"
 
 function App() {
+  const [todos, dispatch] = useReducer(todoReducer, [], init)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="App">
+        {todos.map((todo) => (
+          <TodoCard
+            key={Math.floor(Math.random() * 1000)}
+            todo={todo}
+            dispatch={dispatch}
+          />
+        ))}
+      </div>
+      <TodoForm dispatch={dispatch} />
+    </>
+  )
 }
 
-export default App;
+export default App
