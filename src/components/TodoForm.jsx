@@ -1,22 +1,28 @@
-import { useState } from "react"
+import { useState } from "react";
 
-function TodoForm() {
-  const [content, setContent] = useState("")
+function TodoForm({ dispatch }) {
+  const [content, setContent] = useState("");
 
   return (
     <>
       <div>todoForm</div>
       <input
         onChange={(e) => {
-          setContent(e.target.value)
+          setContent(e.target.value);
         }}
         type="text"
         name="textIpnut"
         id="textIpnut"
       />
-      <button>Ajouter</button>
+      <button
+        onClick={() =>
+          dispatch({ type: "ADD_TODO", payload: { content, status: false } })
+        }
+      >
+        Ajouter
+      </button>
     </>
-  )
+  );
 }
 
-export default TodoForm
+export default TodoForm;
