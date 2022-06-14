@@ -1,24 +1,17 @@
-import { useReducer } from "react"
 import TodoCard from "./components/TodoCard"
 import TodoForm from "./components/TodoForm"
 
-import { todoReducer, init } from "./reducers/todoReducer"
-
 function App() {
-  const [todos, dispatch] = useReducer(todoReducer, [], init)
+  const todos = []
 
   return (
     <>
       <div className="App">
         {todos.map((todo) => (
-          <TodoCard
-            key={Math.floor(Math.random() * 1000)}
-            todo={todo}
-            dispatch={dispatch}
-          />
+          <TodoCard key={Math.floor(Math.random() * 1000)} todo={todo} />
         ))}
       </div>
-      <TodoForm dispatch={dispatch} />
+      <TodoForm />
     </>
   )
 }
